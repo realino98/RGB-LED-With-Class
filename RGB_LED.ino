@@ -20,22 +20,23 @@ public:
         this->_r = r;
         this->_g = g;
         this->_b = b;
-        digitalWrite(_rpin, _r);
-        digitalWrite(_gpin, _g);
-        digitalWrite(_bpin, _b);
+        analogWrite(_rpin, _r);
+        analogWrite(_gpin, _g);
+        analogWrite(_bpin, _b);
     }
     // void RgbLed(int rpin, int gpin, int bpin);
+    
     void setRgb(int r, int g, int b){
         this->_r = r;
         this->_g = g;
         this->_b = b;
-        digitalWrite(_rpin, _r);
-        digitalWrite(_gpin, _g);
-        digitalWrite(_bpin, _b);
+        analogWrite(_rpin, _r);
+        analogWrite(_gpin, _g);
+        analogWrite(_bpin, _b);
     }
     void setRed(int r){
         this->_r = r;
-        digitalWrite(_rpin, _r);
+        analogWrite(_rpin, _r);
     }
     const int getRed(){
         Serial.println("Red   : ");
@@ -43,7 +44,7 @@ public:
     }
     void setGreen(int g){
         this->_g = g;
-        digitalWrite(_gpin, _g);
+        analogWrite(_gpin, _g);
     }
     const int getGreen(){
         Serial.println("Green : ");
@@ -51,11 +52,40 @@ public:
     }
     void setBlue(int b){
         this->_b = b;
-        digitalWrite(_bpin, _b);
+        analogWrite(_bpin, _b);
     }
     const int getBlue(){
         Serial.println("Blue  : ");
         Serial.println(_b);
+    }
+    void animationBreating(){
+        int max_brigtness = 255;
+        int delay_ms = 5;
+        for(int i=0; i<=max_brigtness; i++){
+            analogWrite(_rpin, i);
+            delay(delay_ms);
+        }
+        for(int i=max_brigtness; i>0; i--){
+            analogWrite(_rpin, i);
+            delay(delay_ms);
+        }
+
+        for(int i=0; i<=max_brigtness; i++){
+            analogWrite(_gpin, i);
+            delay(delay_ms);
+        }
+        for(int i=max_brigtness; i>0; i--){
+            analogWrite(_gpin, i);
+            delay(delay_ms);
+        }
+        for(int i=0; i<=max_brigtness; i++){
+            analogWrite(_bpin, i);
+            delay(delay_ms);
+        }
+        for(int i=max_brigtness; i>0; i--){
+            analogWrite(_bpin, i);
+            delay(delay_ms);
+        }
     }
 };
 
@@ -73,14 +103,15 @@ void setup()
 void loop()
 {
 
-    printf("Set RGB");
-    led.setRgb(255, 0, 0);
-    delay(1000);
-    led.setRgb(0, 255, 0);
-    delay(1000);
-    led.setRgb(0, 0, 255);
-    delay(1000);
-    led.getRed();
-    led.getGreen();
-    led.getBlue();
+    // printf("Set RGB");
+    // led.setRgb(255, 0, 0);
+    // delay(1000);
+    // led.setRgb(0, 255, 0);
+    // delay(1000);
+    // led.setRgb(0, 0, 255);
+    // delay(1000);
+    // led.getRed();
+    // led.getGreen();
+    // led.getBlue();
+    led.animationBreating();
 }
