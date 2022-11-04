@@ -1,4 +1,8 @@
 // Quiz C++ RGB LED
+
+#define RED_PIN 6
+#define GREEN_PIN 3
+#define BLUE_PIN 5
 class RGBLed
 {
 private:
@@ -85,9 +89,7 @@ public:
     }
 };
 
-#define RED_PIN 5
-#define GREEN_PIN 6
-#define BLUE_PIN 3
+
 
 RGBLed led;
 void setup()
