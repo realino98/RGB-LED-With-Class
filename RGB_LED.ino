@@ -1,6 +1,4 @@
-// C++ code
-//
-
+// Quiz C++ RGB LED
 class RGBLed
 {
 private:
@@ -10,7 +8,7 @@ private:
     int _r;
     int _g;
     int _b;
-
+    int delay_ms = 5;
 public:
     void RgbLed(int rpin, int gpin, int bpin, int r, int g, int b)
     {
@@ -37,54 +35,52 @@ public:
     void setRed(int r){
         this->_r = r;
         analogWrite(_rpin, _r);
+        delay(delay_ms);
     }
     const int getRed(){
-        Serial.println("Red   : ");
+        Serial.print("Red   : ");
         Serial.println(_r);
     }
     void setGreen(int g){
         this->_g = g;
         analogWrite(_gpin, _g);
+        delay(delay_ms);
     }
     const int getGreen(){
-        Serial.println("Green : ");
+        Serial.print("Green : ");
         Serial.println(_g);
     }
     void setBlue(int b){
         this->_b = b;
         analogWrite(_bpin, _b);
+        delay(delay_ms);
     }
     const int getBlue(){
-        Serial.println("Blue  : ");
+        Serial.print("Blue  : ");
         Serial.println(_b);
     }
+
     void animationBreating(){
         int max_brigtness = 255;
-        int delay_ms = 5;
+        
         for(int i=0; i<=max_brigtness; i++){
-            analogWrite(_rpin, i);
-            delay(delay_ms);
+            setRed(i);
         }
         for(int i=max_brigtness; i>0; i--){
-            analogWrite(_rpin, i);
-            delay(delay_ms);
+            setRed(i);
         }
 
         for(int i=0; i<=max_brigtness; i++){
-            analogWrite(_gpin, i);
-            delay(delay_ms);
+            setGreen(i);
         }
         for(int i=max_brigtness; i>0; i--){
-            analogWrite(_gpin, i);
-            delay(delay_ms);
+            setGreen(i);
         }
         for(int i=0; i<=max_brigtness; i++){
-            analogWrite(_bpin, i);
-            delay(delay_ms);
+            setBlue(i);
         }
         for(int i=max_brigtness; i>0; i--){
-            analogWrite(_bpin, i);
-            delay(delay_ms);
+            setBlue(i);
         }
     }
 };
